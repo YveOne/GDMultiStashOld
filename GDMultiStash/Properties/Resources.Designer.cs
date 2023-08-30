@@ -516,26 +516,6 @@ namespace GDMultiStash.Properties {
         
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die 
-        ///language_name = English (GB)
-        ///
-        ///// messages
-        ///msg_select_game_directory = Please first select your game directory
-        ///msg_game_directory_not_found = Game directory not found!
-        ///msg_documents_directory_not_found = Documents directory not found!
-        ///msg_update_available = New version available: {0}\nUpdate now?
-        ///msg_confirm_closing = Grim Dawn is still running\nClose anyway?
-        ///msg_already_running = GDMultiStash is already running!
-        ///msg_game_already_running = Grim Dawn is already running!
-        ///msg_shortcut_created = Shortcut has be [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
-        /// </summary>
-        internal static string local_enGB {
-            get {
-                return ResourceManager.GetString("local_enGB", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die 
         ///language_name = English (US)
         ///
         ///// messages

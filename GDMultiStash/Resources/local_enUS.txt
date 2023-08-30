@@ -25,6 +25,7 @@ msg_disable_cloud_sync = Warning: Cloud Sync is enabled!\nTo use GDMS you need t
 msg_confirm_delete_old_stashes = Delete old stashes?
 msg_confirm_delete_stash_tab = Delete this tab?
 msg_confirm_clear_stash_tab = Clear this tab?
+msg_new_gd_not_supported = The new GD version is not supported with this GDMS version
 
 // buttons
 btn_file = File
@@ -184,6 +185,7 @@ zip_archive = Zip Archive
 sort_by_none = Unsorted
 sort_by_level = By level
 sort_by_quality = By quality
+sort_by_rarity = By rarity
 sort_by_class = By class
 sort_by_type = By type
 sort_by_set = By set

@@ -36,8 +36,9 @@ namespace GDMultiStash.GlobalHandlers
             public _Core.StringGetter ConfirmDeleteOldStashesMessage => _.Get("msg_confirm_delete_old_stashes");
             public _Core.StringGetter ConfirmDeleteStashTabMessage => _.Get("msg_confirm_delete_stash_tab");
             public _Core.StringGetter ConfirmClearStashTabMessage => _.Get("msg_confirm_clear_stash_tab");
+            public _Core.StringGetter NewGDVersionNotSupported => _.Get("msg_new_gd_not_supported");
 
-
+            
 
 
 
@@ -158,6 +159,7 @@ namespace GDMultiStash.GlobalHandlers
             public _Core.StringGetter SortByNone => _.Get("sort_by_none");
             public _Core.StringGetter SortByLevel => _.Get("sort_by_level");
             public _Core.StringGetter SortByQuality => _.Get("sort_by_quality");
+            public _Core.StringGetter SortByRarity => _.Get("sort_by_rarity");
             public _Core.StringGetter SortByClass => _.Get("sort_by_class");
             public _Core.StringGetter SortByType => _.Get("sort_by_type");
             public _Core.StringGetter SortBySet => _.Get("sort_by_set");

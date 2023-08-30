@@ -43,9 +43,8 @@ namespace GDMultiStash
             Global.FileSystem.CreateDirectories();
             Global.Configuration.Load();
 
-            Global.Localization.AddLanguageFile("deDE", Properties.Resources.local_deDE);
-            Global.Localization.AddLanguageFile("enGB", Properties.Resources.local_enGB);
             Global.Localization.AddLanguageFile("enUS", Properties.Resources.local_enUS);
+            Global.Localization.AddLanguageFile("deDE", Properties.Resources.local_deDE);
             Global.Localization.AddLanguageFile("zhCN", Properties.Resources.local_zhCN);
             Global.Configuration.LanguageChanged += Global_Configuration_LanguageChanged;
 
@@ -59,7 +58,8 @@ namespace GDMultiStash
             }
             else
             {
-                Global.Localization.LoadLanguage(Global.Configuration.Settings.Language);
+                if (!Global.Localization.LoadLanguage(Global.Configuration.Settings.Language))
+                    Global.Localization.LoadLanguage("enUS");
             }
 
             if (!GrimDawn.ValidateDocumentsPath())
@@ -92,6 +92,15 @@ namespace GDMultiStash
             if (!GrimDawn.ValidateGamePath(Global.Configuration.Settings.GamePath))
             {
                 Console.Warning(Global.L.GameDirectoryNotFoundMessage());
+                Program.Quit();
+                return;
+            }
+
+            // resources/Text_EN.arc only exists since gd1.2
+            if (File.Exists(Path.Combine(Global.Configuration.Settings.GamePath, "resources", "Text_EN.arc")))
+            {
+                Console.Warning(Global.L.NewGDVersionNotSupported());
+                System.Diagnostics.Process.Start("https://github.com/YveOne/GDMultiStash/releases");
                 Program.Quit();
                 return;
             }
@@ -175,10 +184,14 @@ namespace GDMultiStash
             Global.Windows.CloseMainWindow();
             Global.Database.Destroy();
             StopServices();
-            _gdWindowHookService.Destroy();
-            _gdGameHookService.Destroy();
-            _gdOverlayService.Destroy();
-            trayIcon.Visible = false;
+            if (_gdWindowHookService != null)
+                _gdWindowHookService.Destroy();
+            if (_gdGameHookService != null)
+                _gdGameHookService.Destroy();
+            if (_gdOverlayService != null)
+                _gdOverlayService.Destroy();
+            if (trayIcon != null)
+                trayIcon.Visible = false;
         }
 
         private void StartServices()
@@ -214,6 +227,8 @@ namespace GDMultiStash
 
         private void StopServices()
         {
+            if (!_servicesInstalled) return;
+
             _gdWindowHookService.HookInstalled -= GDWindowHook_HookInstalled;
             _gdWindowHookService.MoveSize -= GDWindowHook_MoveSize;
             _gdWindowHookService.GotFocus -= GDWindowHook_GotFocus;

@@ -1,3 +1,6 @@
+v1.37.5
+- Moved to new repository "GDMultiStashOld" to support GD 1.1.9.8 in the future
+
 v1.37.4
 - Fixed debug console showing everytime when starting GDMS
 

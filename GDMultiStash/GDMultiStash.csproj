@@ -134,6 +134,7 @@
     </Compile>
     <Compile Include="Forms\ContextMenues\SortStashes\Criteria\ClassSortCriteria.cs" />
     <Compile Include="Forms\ContextMenues\SortStashes\Criteria\NoneSortCriteria.cs" />
+    <Compile Include="Forms\ContextMenues\SortStashes\Criteria\RaritySortCriteria.cs" />
     <Compile Include="Forms\ContextMenues\SortStashes\Criteria\QualitySortCriteria.cs" />
     <Compile Include="Forms\ContextMenues\SortStashes\Criteria\SetSortCriteria.cs" />
     <Compile Include="Forms\ContextMenues\SortStashes\Criteria\SortCriteria.cs" />
@@ -513,7 +514,6 @@
     <Content Include="Resources\ButtonSmallOver.png" />
     <Content Include="Resources\ButtonSmallUp.png" />
     <None Include="Resources\local_deDE.txt" />
-    <None Include="Resources\local_enGB.txt" />
     <None Include="Resources\local_enUS.txt" />
     <None Include="Resources\buttonTrayGray.png" />
     <None Include="Resources\buttonTrayWhite.png" />

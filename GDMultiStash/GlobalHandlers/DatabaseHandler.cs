@@ -258,9 +258,12 @@ namespace GDMultiStash.GlobalHandlers
 
         public void Destroy()
         {
-            _texturesZipArchive.Dispose();
-            _texturesMemoryStream.Close();
-            _texturesMemoryStream.Dispose();
+            if (_texturesZipArchive != null)
+                _texturesZipArchive.Dispose();
+            if (_texturesMemoryStream != null)
+                _texturesMemoryStream.Close();
+            if (_texturesMemoryStream != null)
+                _texturesMemoryStream.Dispose();
         }
 
         private Dictionary<string, uint> quality2number = new Dictionary<string, uint>() {
