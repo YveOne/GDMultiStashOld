@@ -96,8 +96,8 @@ namespace GDMultiStash
                 return;
             }
 
-            // resources/Text_EN.arc only exists since gd1.2
-            if (File.Exists(Path.Combine(Global.Configuration.Settings.GamePath, "resources", "Text_EN.arc")))
+            // directory gdx3 doesnt exist yet in 1.2
+            if (File.Exists(Path.Combine(Global.Configuration.Settings.GamePath, "resources", "Text_DE.arc")))
             {
                 Console.Warning(Global.L.NewGDVersionNotSupported());
                 System.Diagnostics.Process.Start("https://github.com/YveOne/GDMultiStash/releases");
