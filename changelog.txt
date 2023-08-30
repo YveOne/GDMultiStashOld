@@ -1,0 +1,358 @@
+v1.37.4
+- Fixed debug console showing everytime when starting GDMS
+
+
+v1.37.3
+- Empty stash tabs will displayed cyan in usage indicators
+- Updated stash sorting system, prepared for user defined sort rules
+- Previously selected stashes will be reselected after sorting
+- Fixed a bug where stash count get not refreshed correctly in group header after deleting stashes
+- Added column for stash counts in groups tab page
+
+v1.37.2
+- Fixed crash caused by "index out of bounds" caused by new sorting methods "by set"
+
+v1.37
+- [Start GD] "Steam Client" is now using the command "<path>/Steam.exe -applaunch 219990 /x64"
+- [Start GD] "Grim Dawn.exe" is now using "/x64" argument by default
+- [Start GD] Commands are now relative to game path. No need to reset start command after changing game path anymore
+- [Start GD] Information: Custom start commands remain unharmed and are still supported
+- Addes stash sorting methods "by set/level" and "by level/set"
+- - (An additional group "Unsorted" will be created for non-set items)
+- Fixed a bug where "Sort items by level" uses wrong calculated required item levels
+
+v1.36.5
+- Fixed shortcut creation
+
+v1.36.4
+- Fixed: Ingame stash not automatically reloading after editing stash tabs
+- Fixed: Auto-back-to-main feature not working when quitting GD
+- Fixed: When copying stash to other expansion new created stash gets added to current list
+- Fixed: Stash content not getting saved when using ingame home (back to main) button
+- Fixed: GDMS crashing after startup caused by new transfer file watcher
+- Fixed: GDMS crashing when hiding/showing columns in listview
+- Fixed: Auto sorted stashes first tab always empty
+- Changed: Only empty groups can be deleted now.
+  You need to delete or move all stashes (all expansions/sc/hc) of that group into other group first
+- Changed: Changelog window will no more appear on startup when auto starting Grim Dawn
+- Changed: Main window will nomore get activated/focused on startup when auto starting Grim Dawn
+- Reworked source code structure
+
+v1.36.3
+- Increased text readability of scaled overlay
+- Implemented custom transfer file watcher
+- Added config option: Save changes made by external tools (enabled by default)
+
+v1.36.2
+- Hotfixes! Thanks Dragon9112 for testing
+- Fixed: Auto back to main is not working
+- Program is now running correctly in 64bit mode
+- Changed method to catch game beeing minimized
+
+v1.36
+- Fixed a bug where stashes would be created with zero tabs
+- Added: File System Watcher to catch transfer file changes
+- Added: Crafting Mode (File -> Import -> Crafting Mode)
+
+v1.35.3
+- Fixed several small bugs in runtime events system
+
+v1.35.2
+- Fixed: Plexiglass still shown when minimizing main window
+- Added: Debug log will be written to "log.txt" inside GDMS directory
+
+v1.35.1
+- Added "Clear" option to tabs editor context menu
+- Added "Duplicate" option to tabs editor context menu
+- AutoFill now works even if there are more than 1 item in a tab. It will always use the first found item as template.
+- Added new config option "Automatically select first stash in group" (activated by default)
+- Fixed: Stash locks not getting saved correctly
+- Fixed: Main stash not beeing saved correctly
+
+v1.35
+- Moved plexiglass from whole window to inner client area
+- Plexiglass will no more show up in Alt+Tab
+- Added home button to overlay window
+- Fixed crash caused by color value out of range inside StashObject.CreateUsageIndicator()
+
+v1.34
+- Changed startup behavior: GDMS will check itself if any dll is missing
+- Added option to delete only empty stashes to context menu
+- Removed file GDMultiStash.debug.bat; Added file GDMultiStashDebug.exe
+- Fixed: Language always gets reset to local after restarting GDMS
+- New Feature: Automaticly sort items by level, type, class or quality
+- New feature: Added tabs editor to view, add, remove and drag&drop stash tabs
+- New feature: Auto fill stashes with items with random seeds
+
+v1.33.1
+- Scrollbars in main window getting updated correctly now
+- Fixed text flickering in group select button
+- 'Auto back to main' now also changes back to main stash group
+- Now a stash backup will be created before deleting a stash tab
+- Debug console is now showing correct unicode chars (eg chinese)
+
+v1.33
+- Added context options to edit stash tabs:
+  - Add & delete tabs
+  - move tabs to other stash in same group
+  - move tabs up/down
+- Confirm dialog won't be shown when deleting empty stashes/tabs
+- Added select for tabs count to create-stash-window
+
+v1.32.1
+- Changed default stash tabs count from 1 to 4 for base game
+- Capacity indicator is now showing the correct amount of stash tabs
+
+v1.32
+- You can now import transfer files without extensions
+  The correct expansion will be identified by stash data
+- Added warning message if cloud sync is enabled in GD options
+- Import form can now be submitted by enter key too
+- Added group select to import window
+- Added context option to copy stashes from one expansion to higher one
+
+v1.31.1
+- Order of stashes gets corrupted when dragging a group in stashes page - fixed
+
+v1.31
+- Added a logo on game start up to indicate that GDMS is running
+- Bugfix: Collapsing a group nomore activates edit mode for stash name
+- Added config option to show/hide capacity indicators in overlay
+- Improved DirectX Hook: Now consuming less memory by reusing cached resources
+- SC/HC checkboxes in display menu (at bottom) now using three states
+  checked (green tick): show only stashes where it is also checked
+  unchecked (red cross): show only stashes where is is also not checked
+  indeterminate (empty): show all stashes
+  Examples:
+    - leaving both empty will show all stashes
+    - set SC to checked and HC empty will show all stashes where SC is checked
+    - set both to checked will only show stashes where both are checked
+    This only affects the main window list, not the ingame stash list
+
+v1.30
+- Fixed: Reloading a locked stash not working
+- Fixed: Saving a stash is now also loading it
+- Local language will be auto selected on first startup (if translation exists)
+- Changelog window will no more pop up on first startup
+- Removed listview column "Locked" - Moved option to context menu (right click a stash)
+- Removed listview column "Color" - Use option in context menu instead (right click a stash)
+- Updated main window design
+- Added button to config window to extract translation files
+- Updated config file structure
+- Removed option 'default mode for new stashes' - Use checkboxes in main window
+- Fixed a bug where config files with older versions got not upgraded correctly
+- Removed button 'select all'
+- Fixed restoring stashes when game is not running
+- Removed feature to drag&drop files out of the listview to explorer (was causing lags)
+- Removed option to overwrite stashes in import window (use new solution below)
+- Added context menu option to overwrite (import+overwrite) a stash
+- Simply create stashes/groups by hitting enter key while name textbox got focus
+- Added option in config window to change amount of displayed stashes in overlay window
+- Fixed custom scaling of overlay window not getting applied correctly (but still causing some graphical issues)
+- Improved Overlay System
+- Added stash grouping feature .. hell yeah
+- And a few other bugfixes
+
+v1.29
+- Fixed backup restoration. A stash could only be restored when it was opened ingame. That has been fixed.
+- Added a reload button in overlay info window to support other tools like GD Stash.
+  When you click on it the stash currently used will FIRST be imported to gdms BEFORE ingame stash is getting closed.
+  With this you can reload your stashes when the original file has been changed by any other tool (like GD Stash).
+- Added lock feature - You can now lock your stashes!
+  Locked stashes won't get overwritten in gdms. If you want to be able to overwrite
+  locked stashes by using the save button you first need to enable it in the options.
+
+v1.28
+- Removed 'auto update' option in config window (you will always get asked now)
+- Updated resource itemsizes.txt: Now using width and height values
+- Fixed backup system (there was a problem where not all old backups got deleted)
+- Removed option for unlimited backups
+- Increased max backups count to 30 in config window
+- Added button 'cleanup backups' in config window
+- Added new colors white and rose
+- Colorized color names in color dropdown in main window
+- Added context menu to change color of multiple stashes
+- removed button 'unselect all' (click 'select all' to unselect)
+- Added changelog window to 'help' menu
+- Changelog window will open after an update
+- Language files are now internal only! Directory 'Data/Locales' will get deleted
+- Overlay stashlist: Fixed a bug where list got not updated correctly
+- Overlay stashlist: Now blocking camera zoom when scrolling by mouse wheel
+
+v1.27
+- Added delays in switching process to fix the move-away-bug
+
+v1.26
+- Changed stash switching process: Removed retrying loops to send keyboard input in hope it fixes the stash replaced bug
+
+v1.25
+- Updated config window: Removed tab control. All options are now on one page
+- Added feature to let GDMS be run in background while GD is running
+
+v1.24
+- Added option to change overlay transparency (set to 0% to disable the fading effect)
+
+v1.23
+- Updated sourcecode
+
+v1.22
+- Added more debug messages to the overlay system (for init exception)
+
+v1.21
+- Added more debug messages to the overlay system
+
+v1.20
+- Still hunting the bug thats corrupting stashes while switching
+- Changed count of tries of sending interact key to 4 times with timeout of 500ms (4x500ms=2sec)
+
+v1.19
+- Switching stashes is now a little bit slower to prevent stash corruption
+- Stash corruption while switching stashes seems(!) to be fixed
+- Grim Dawn window is now getting set to foreground on GDSM start
+
+v1.18
+- Fixed mouse hook not working after Grim Dawn startup
+
+v1.17
+- All hooks are now getting reinstalled when Grim Dawn has been restarted
+- Added option to show/hide columns (right click listview header to show the menu)
+- Minor improvements and bug fixes
+
+v1.16
+- Improved text readability
+- Stash list in overlay window can now be scrolled by wheel (beta, camera will still zoom)
+
+v1.15
+- Fixed list not scrolling when mouse is not over the overlay window
+- Updated overlay window design
+- Changed overlay font style from bold to regular and increased margin, better readable
+- Changed text alpha of inactive stashes in overlay window from 50% to 66%
+- Updated overlay scrollbar: Min height is now 30, gets hidden if no scrolling available
+
+v1.14
+- Performance fixes
+- Updater patch
+
+v1.13
+- Fixed game crash when user presses keybind (U) while ingame stash opened
+
+v1.12
+- Update check is now once per hour and no more once per day
+- Added Chinese translation (by tt300)
+- Added translation file for enGB
+- The GDMultiStash window can now be resized
+- Updated localization system: Now only 4 letter (country/language) codes are allowed (enUS/enGB/deDE/zhCN/...)
+- Localization:
+    +column_expansion
+    +column_softcore
+    +column_hardcore
+
+v1.11
+- Added drop down for colors in listview cell edit mode
+- Added support for multi mode stashes (SC+HC)
+- Listview item background now getting correctly reset after dragging
+- Localization:
+    +color_default
+    +color_green
+    +color_blue
+    +color_purple
+    +color_gold
+    +color_gray
+
+v1.10.2
+- Fixed Game Crash when opening/closing devotion window before opening transfer stash
+
+v1.10.1
+- Fixed ArgumentNullException in settings window
+
+v1.10
+- Now Stash will be switched to main only when whole ingame stash window closed
+- Updated whole overlay list system
+- Fixed Drag&Drop of files into listview
+- Fixed Drag&Drop of transfer files without extension
+- Added option for default mode of new stashes
+- The export feature in context menu is now using the zip system as well
+- Fixed lagging mouse... Mouse hook is getting unset while game window is not focused
+- Stash names can now be colored
+- Localization:
+    +label_default_stash_mode
+    +mode_none
+    +mode_sc
+    +mode_hc
+    +mode_both
+    -export_stash
+    +context_export
+    +column_color
+
+v1.9
+- Added Version check + Updater
+- Fixed dragging of stashes that got both sc and hc checked
+- Updated localization
+    +label_check_for_new_version
+    +label_auto_update_version
+
+v1.8
+- New feature: To import transfer files drag and drop them directly onto the window
+- New feature: Reerange stashes (change order of stashes) by using drag & drop
+- New feature: Drag&Drop stashes from listview to desktop (will create a zip file)
+- Added support for GOG version
+- Removed "up" and "down" buttons in listview - use new drag&drop feature
+- Added mutex to allow only one running instance of GDMultiStash at a time
+- Added buttons to select/unselect all stashes in listview
+- Main stashes are no more disabled in listview. Now they can be renamed but reordering or mode checkboxes are still disabled
+- Stashes with missing transfer file in Data/Stashes folder (corrupted) will get red highlight in listview
+- Updated localization
+    +button_select_all
+    +button_unselect_all
+
+v1.7
+- The usage of stashes is now getting updated correctly
+- Added autostart support for GrimCam
+- Updated setup window
+- Added option to automaticly switch back to main stash when ingame stash closed
+- Improved stash changing - made it safier and faster
+- Updated localization
+    +label_auto_back_to_main
+
+v1.6
+- Text align of column ID is now left (makes it easer to read the names)
+- Font of ingame window is now getting clipped correctly if too large
+- Language files in "Data/Locales" are now getting updated automaticly on version update
+- Fixed a bug where overlay elements x/y/width/height did not get updated properly
+- Overlay scrollbar now getting updated properly when visible stashes changed
+- Added option to change overlay width
+- Added option to change overlay scaling
+- Updated itemsizes list
+- Updated localization:
+    +label_overlay_width
+    +label_overlay_scale
+
+v1.5
+- Fixed opacy bug in ingame stash list items
+- Fixed exception when right clicking empty listview area
+
+v1.4
+- GDMultiStash now also supports the base game and Ashes of Malmouth expansion
+- Four additional new stashes are beeing created on startup (for missing expansions of old version)
+- GDMultiStash now should theoretically work with running GDItemAssistant
+- Added new column in listview to show stash expansions
+- Columns "last change" and "usage" are no more editiable by user
+- Added select box for expansion in "add stash" dialog
+- Added textbox for expansion in "import stash" dialog
+- Ingame list now only showing stashes for current mode AND expension
+- Updated export of single stashes to respect expansions and modes in extensions
+- Added new menu to main window in top right corner to change stash display
+- Changed localization (just delete "Locales" dir in your "Data" dir to update lang files):
+    -save
+    -load
+    +all
+    +button_load
+    +label_expansion
+    -main_stash_sc
+    -main_stash_hc
+    +main_stash_0sc
+    +main_stash_0hc
+    +main_stash_1sc
+    +main_stash_1hc
+    +main_stash_2sc
+    +main_stash_2hc
