@@ -13,10 +13,7 @@ namespace GDMultiStashUpdater
 {
     public static class UpdaterAPI
     {
-
-
-
-        private static readonly string latestUrl = @"https://api.github.com/repos/YveOne/GDMultiStash/releases/latest";
+        private static readonly string latestUrl = @"https://api.github.com/repos/YveOne/GDMultiStashOld/releases/latest";
 
         private static string _newVersionUrl = null;
         private static string _newVersionName = null;
