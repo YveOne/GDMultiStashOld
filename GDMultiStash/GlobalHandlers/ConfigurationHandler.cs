@@ -165,6 +165,31 @@ namespace GDMultiStash.GlobalHandlers
             WriteToFile(_config, Global.FileSystem.ConfigFile);
         }
 
+        public void SaveBackup()
+        {
+            if (File.Exists(Global.FileSystem.ConfigFile))
+            {
+                File.Copy(Global.FileSystem.ConfigFile, Global.FileSystem.ConfigFile + ".backup");
+            }
+        }
+
+        public void RestoreBackup()
+        {
+            if (File.Exists(Global.FileSystem.ConfigFile + ".backup"))
+            {
+                File.Delete(Global.FileSystem.ConfigFile);
+                File.Move(Global.FileSystem.ConfigFile + ".backup", Global.FileSystem.ConfigFile);
+            }
+        }
+
+        public void DeleteBackup()
+        {
+            if (File.Exists(Global.FileSystem.ConfigFile + ".backup"))
+            {
+                File.Delete(Global.FileSystem.ConfigFile + ".backup");
+            }
+        }
+
         public void UpdateAndCleanup()
         {
             var needSaveAfterUpdate = false;
@@ -296,7 +321,7 @@ namespace GDMultiStash.GlobalHandlers
                 _config.SortPatterns.Items.Add(new Common.Config.ConfigSortPattern()
                 {
                     Name = Global.L.SortByAIO() + " (2)",
-                    Value = Global.L.SortByRarity() + "/{rarity}\n{quality}/[{level}] {set}\n{type} - {quality}/{class} - lvl {level}",
+                    Value = Global.L.SortByRarity() + "/{rarity}\n" + Global.L.SortBySet() + " - {quality}/[{level}] {set}\n{type} - {quality}/{class} - lvl {level}",
                 });
             };
             foreach (var revUptdKvp in revisionUpdates)
@@ -505,7 +530,7 @@ namespace GDMultiStash.GlobalHandlers
             }
             return false;
         }
-        
+
         public bool IsMainStashID(int stashID, GrimDawnGameExpansion exp, GrimDawnGameMode mode)
         {
             Common.Config.ConfigExpansion cexp = Expansions[(int)exp];

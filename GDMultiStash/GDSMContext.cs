@@ -41,11 +41,13 @@ namespace GDMultiStash
             }
 
             Global.FileSystem.CreateDirectories();
+            Global.Configuration.SaveBackup();
             Global.Configuration.Load();
 
-            Global.Localization.AddLanguageFile("enUS", Properties.Resources.local_enUS);
-            Global.Localization.AddLanguageFile("deDE", Properties.Resources.local_deDE);
-            Global.Localization.AddLanguageFile("zhCN", Properties.Resources.local_zhCN);
+            Global.Localization.AddLanguageFile("enUS");
+            Global.Localization.AddLanguageFile("deDE");
+            Global.Localization.AddLanguageFile("zhCN");
+            Global.Localization.AddLanguageFilesFrom(Global.FileSystem.LocalesDirectory);
             Global.Configuration.LanguageChanged += Global_Configuration_LanguageChanged;
 
             if (Global.Configuration.IsNewConfiguration)
@@ -99,9 +101,17 @@ namespace GDMultiStash
             // directory gdx3 doesnt exist yet in 1.2
             if (File.Exists(Path.Combine(Global.Configuration.Settings.GamePath, "resources", "Text_DE.arc")))
             {
-                Console.Warning(Global.L.NewGDVersionNotSupported());
-                System.Diagnostics.Process.Start("https://github.com/YveOne/GDMultiStash/releases");
-                Program.Quit();
+                Global.Configuration.RestoreBackup();
+                string msg = Global.L.NewGDVersionNotSupported();
+                if (Console.Confirm(msg, MessageBoxIcon.Information))
+                {
+                    Global.Update.StartUpdater(GDMultiStashUpdater.UpdaterAPI.LatestUrlLive);
+                }
+                else
+                {
+                    System.Diagnostics.Process.Start("https://github.com/YveOne/GDMultiStash/releases");
+                    Program.Quit();
+                }
                 return;
             }
 
@@ -117,6 +127,7 @@ namespace GDMultiStash
             }
 
             Global.Configuration.UpdateAndCleanup();
+            Global.Configuration.DeleteBackup();
 
             // warn user if cloud saving is enabled in gd settings
             {

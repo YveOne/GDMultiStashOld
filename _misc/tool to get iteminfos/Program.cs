@@ -16,7 +16,7 @@ namespace ConsoleApp1
     internal class Program
     {
 
-        private static readonly string GDPATH = "Z:\\Games\\Steam\\steamapps\\common\\Grim Dawn";
+        private static readonly string GDPATH = "Z:\\Games\\Steam\\steamapps\\common\\Grim Dawn (1.1.9.8)";
 
         private static readonly string GD0_DB = Path.Combine(GDPATH, "database", "database.arz");
         private static readonly string GD1_DB = Path.Combine(GDPATH, "gdx1", "database", "GDX1.arz");
@@ -256,6 +256,7 @@ namespace ConsoleApp1
                     if (!(record.StartsWith("records/items/lootaffixes/")
                        || record.StartsWith("records/items/enchants/")
                        || record.StartsWith("records/items/materia/")
+                       || record == "records/items/gearweapons/focus/b203c_focus.dbr"
                     )) continue;
 
                     var dbrData = DoRegex(File.ReadAllText(dbrFile), new string[] {
@@ -290,7 +291,7 @@ namespace ConsoleApp1
                 {
                     var record = GetRecordPath(dbrFile);
                     if (record.Contains("petbonus")
-                       || !(record.StartsWith("records/items/lootsets/")
+                    || !(record.StartsWith("records/items/lootsets/")
                        || record.StartsWith("records/storyelements/signs/")
                     )) continue;
 

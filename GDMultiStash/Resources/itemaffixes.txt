@@ -339,6 +339,7 @@ records/items/enchants/runes/d218_rune.dbr|90|Legendary
 records/items/enchants/runes/d219_rune.dbr|90|Legendary
 records/items/enchants/runes/d220_rune.dbr|90|Legendary
 records/items/enchants/runes/d221_rune.dbr|90|Legendary
+records/items/gearweapons/focus/b203c_focus.dbr|55|Rare
 records/items/lootaffixes/broken/broken_all01.dbr|0|Broken
 records/items/lootaffixes/broken/broken_armor01.dbr|0|Broken
 records/items/lootaffixes/broken/broken_weapon01.dbr|0|Broken

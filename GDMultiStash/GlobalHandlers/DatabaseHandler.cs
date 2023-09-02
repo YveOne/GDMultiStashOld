@@ -58,11 +58,11 @@ namespace GDMultiStash.GlobalHandlers
         private readonly Dictionary<string, ItemRecordInfo> _itemRecordInfos = new Dictionary<string, ItemRecordInfo>();
         private readonly Dictionary<string, AffixRecordInfo> _affixRecordInfos = new Dictionary<string, AffixRecordInfo>();
         private readonly Dictionary<string, ItemSetRecordInfo> _itemSetRecordInfos = new Dictionary<string, ItemSetRecordInfo>();
-        
+
         private MemoryStream _texturesMemoryStream = null;
         private ZipArchive _texturesZipArchive = null;
         private readonly Dictionary<string, ZipArchiveEntry> _itemTextureEntries = new Dictionary<string, ZipArchiveEntry>();
-        
+
         public uint GetItemSize(string record, uint def = 1)
         {
             if (record == "") return 0;
@@ -166,31 +166,24 @@ namespace GDMultiStash.GlobalHandlers
         public void LoadItemInfos(string text)
         {
             Console.WriteLine("Reading item infos ...");
-            string[] splits;
-            string record;
-            using (StringReader sr = new StringReader(text))
+            foreach (var line in Utils.Funcs.ReadTextLinesIter(text))
             {
-                string line;
-                while ((line = sr.ReadLine()) != null)
+                var splits = line.Split('|');
+                if (splits.Length < 8) continue;
+                var record = splits[0].Trim();
+                if (!uint.TryParse(splits[1], out uint width)) continue;
+                if (!uint.TryParse(splits[2], out uint height)) continue;
+                if (!uint.TryParse(splits[3], out uint level)) continue;
+                _itemRecordInfos[record] = new ItemRecordInfo()
                 {
-                    splits = line.Split('|');
-                    if (splits.Length < 8) continue;
-                    record = splits[0].Trim();
-                    if (record.StartsWith("//")) continue;
-                    if (!uint.TryParse(splits[1], out uint width)) continue;
-                    if (!uint.TryParse(splits[2], out uint height)) continue;
-                    if (!uint.TryParse(splits[3], out uint level)) continue;
-                    _itemRecordInfos[record] = new ItemRecordInfo()
-                    {
-                        Width = width,
-                        Height = height,
-                        RequiredLevel = level,
-                        Class = splits[4],
-                        Quality = splits[5],
-                        Texture = splits[6],
-                        ItemSetRecord = splits[7],
-                    };
-                }
+                    Width = width,
+                    Height = height,
+                    RequiredLevel = level,
+                    Class = splits[4],
+                    Quality = splits[5],
+                    Texture = splits[6],
+                    ItemSetRecord = splits[7],
+                };
             }
             Console.WriteLine("- Found " + _itemRecordInfos.Count + " records");
         }
@@ -198,24 +191,17 @@ namespace GDMultiStash.GlobalHandlers
         public void LoadItemAffixInfos(string text)
         {
             Console.WriteLine("Reading affix infos ...");
-            string[] splits;
-            string record;
-            using (StringReader sr = new StringReader(text))
+            foreach (var line in Utils.Funcs.ReadTextLinesIter(text))
             {
-                string line;
-                while ((line = sr.ReadLine()) != null)
+                var splits = line.Split('|');
+                if (splits.Length < 2) continue;
+                var record = splits[0].Trim();
+                if (!uint.TryParse(splits[1], out uint level)) continue;
+                _affixRecordInfos[record] = new AffixRecordInfo()
                 {
-                    splits = line.Split('|');
-                    if (splits.Length < 2) continue;
-                    record = splits[0].Trim();
-                    if (record.StartsWith("//")) continue;
-                    if (!uint.TryParse(splits[1], out uint level)) continue;
-                    _affixRecordInfos[record] = new AffixRecordInfo()
-                    {
-                        RequiredLevel = level,
-                        Quality = splits[2],
-                    };
-                }
+                    RequiredLevel = level,
+                    Quality = splits[2],
+                };
             }
             Console.WriteLine("- Found " + _affixRecordInfos.Count + " records");
         }
@@ -223,23 +209,16 @@ namespace GDMultiStash.GlobalHandlers
         public void LoadItemSets(string text)
         {
             Console.WriteLine("Reading itemsets infos ...");
-            string[] splits;
-            string record;
-            using (StringReader sr = new StringReader(text))
+            foreach (var line in Utils.Funcs.ReadTextLinesIter(text))
             {
-                string line;
-                while ((line = sr.ReadLine()) != null)
+                var splits = line.Split('|');
+                if (splits.Length < 3) continue;
+                var record = splits[0].Trim();
+                _itemSetRecordInfos[record] = new ItemSetRecordInfo()
                 {
-                    splits = line.Split('|');
-                    if (splits.Length < 3) continue;
-                    record = splits[0].Trim();
-                    if (record.StartsWith("//")) continue;
-                    _itemSetRecordInfos[record] = new ItemSetRecordInfo()
-                    {
-                        ItemSetNameKey = splits[1],
-                        ItemSetItemRecords = splits[2].Split(';'),
-                    };
-                }
+                    ItemSetNameKey = splits[1],
+                    ItemSetItemRecords = splits[2].Split(';'),
+                };
             }
             Console.WriteLine("- Found " + _itemSetRecordInfos.Count + " records");
         }

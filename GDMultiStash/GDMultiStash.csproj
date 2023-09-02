@@ -163,6 +163,8 @@
     <Compile Include="GlobalHandlers\LocalizationHandler.Strings.cs" />
     <Compile Include="GlobalHandlers\RuntimeHandler.cs" />
     <Compile Include="GlobalHandlers\RuntimeHandler.Events.cs" />
+    <Compile Include="GlobalHandlers\SoundHandler.cs" />
+    <Compile Include="GlobalHandlers\ResourceHandler.Events.cs" />
     <Compile Include="GlobalHandlers\SoundHandler.Events.cs" />
     <Compile Include="GlobalHandlers\StashesHandler.Events.cs" />
     <Compile Include="GlobalHandlers\UpdateHandler.Events.cs" />
@@ -281,7 +283,7 @@
     <Compile Include="Forms\Dragging\StashesDragSource.cs" />
     <Compile Include="Forms\Dragging\StashesDropSink.cs" />
     <Compile Include="GlobalHandlers\FileSystemHandler.cs" />
-    <Compile Include="GlobalHandlers\SoundHandler.cs" />
+    <Compile Include="GlobalHandlers\ResourceHandler.cs" />
     <Compile Include="GrimDawnLib\GrimDawn.GOG.cs" />
     <Compile Include="Native\Native.Constants.cs" />
     <Compile Include="Overlay\Controls\Base\LargeButton.cs" />

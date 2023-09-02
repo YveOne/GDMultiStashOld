@@ -38,7 +38,7 @@ namespace GDMultiStash.GlobalHandlers
             public _Core.StringGetter ConfirmClearStashTabMessage => _.Get("msg_confirm_clear_stash_tab");
             public _Core.StringGetter NewGDVersionNotSupported => _.Get("msg_new_gd_not_supported");
 
-            
+
 
 
 
@@ -67,7 +67,6 @@ namespace GDMultiStash.GlobalHandlers
             public _Core.StringGetter SearchButton => _.Get("btn_search");
             public _Core.StringGetter CreateShortcutButton => _.Get("btn_create_shortcut");
             public _Core.StringGetter CleanupBackupsButton => _.Get("btn_cleanup_backups");
-            public _Core.StringGetter ExtractTranslationsButton => _.Get("btn_extract_translations");
             public _Core.StringGetter CreateButton => _.Get("btn_create");
             public _Core.StringGetter LoadButton => _.Get("btn_load");
             public _Core.StringGetter CreateGroupButton => _.Get("btn_create_group");
@@ -165,7 +164,7 @@ namespace GDMultiStash.GlobalHandlers
             public _Core.StringGetter SortBySet => _.Get("sort_by_set");
             public _Core.StringGetter SortByAIO => _.Get("sort_by_aio");
             public _Core.StringGetter SortingFinishedMessage => _.Get("sorting_finished");
-            
+
             #endregion
 
             #region stash/group names
@@ -225,7 +224,7 @@ namespace GDMultiStash.GlobalHandlers
 
             public _Core.StringGetter ItemClassOther => _.Get("item_class_other");
 
-            public _Core.StringGetter ItemClassOtherRelics => _.Get("item_class_relics");
+            public _Core.StringGetter ItemClassOtherRelics => _.Get("item_class_other_relics");
             public _Core.StringGetter ItemClassOtherFactions => _.Get("item_class_other_factions");
             public _Core.StringGetter ItemClassOtherConsumable => _.Get("item_class_other_consumable");
             public _Core.StringGetter ItemClassOtherBlueprints => _.Get("item_class_other_blueprints");
