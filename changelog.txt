@@ -1,3 +1,7 @@
+v1.37.6 (unreleased)
+- Position of main window will now be saved and restored on startup
+- Added config option to set start position state to normal, minimized or tray
+
 v1.37.5
 - Added new sort criteria "rarity" to sort MI's and DR's
 - Moved to new repository "GDMultiStashOld" to support GD 1.1.9.8 in the future

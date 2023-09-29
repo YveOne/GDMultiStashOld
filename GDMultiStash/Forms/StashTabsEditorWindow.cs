@@ -249,6 +249,7 @@ namespace GDMultiStash.Forms
                 StashTabPanel tabPanel = sender as StashTabPanel;
                 // dont delete last tab! it would crash gd!
                 if (tabPanel.StashObject.Tabs.Count == 1) return;
+                tabPanel.ShowHighlight();
                 draggingImage = new DragImage(tabPanel, new Point(-e.Location.X, -e.Location.Y));
                 tabPanel.DoDragDrop(tabPanel, DragDropEffects.Move);
             }
@@ -269,6 +270,7 @@ namespace GDMultiStash.Forms
                 if (tabPanel.Parent == null)
                 {
                     ResetDragging();
+                    tabPanel.HideHighlight();
                 }
             }
         }

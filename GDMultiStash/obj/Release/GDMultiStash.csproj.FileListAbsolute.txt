@@ -93,3 +93,4 @@ C:\Users\Yvonne\Desktop\PROJECTS\GDMultiStashOld-master\GDMultiStash\obj\Release
 C:\Users\Yvonne\Desktop\PROJECTS\GDMultiStashOld-master\GDMultiStash\obj\Release\GDMultiStash.csproj.CopyComplete
 C:\Users\Yvonne\Desktop\PROJECTS\GDMultiStashOld-master\GDMultiStash\obj\Release\GDMultiStash.exe
 C:\Users\Yvonne\Desktop\PROJECTS\GDMultiStashOld-master\GDMultiStash\obj\Release\GDMultiStash.pdb
+C:\Users\Yvonne\Desktop\PROJECTS\GDMultiStashOld-master\GDMultiStash\obj\Release\GDMultiStash.Forms.ColorsDialogForm.resources

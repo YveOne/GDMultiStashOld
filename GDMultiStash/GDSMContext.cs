@@ -116,7 +116,7 @@ namespace GDMultiStash
             }
 
             // check for new version
-            if (Global.Update.NewVersionAvailable())
+            if (Global.Update.ShowNewVersionAvailable())
             {
                 string msg = Global.L.UpdateAvailableMessage(Global.Update.NewVersionName);
                 if (Console.Confirm(msg, MessageBoxIcon.Information))
