@@ -22,7 +22,7 @@ namespace GDMultiStash.Forms.StashTabsEditor
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            Console.WriteLine(highlightCount);
+            //Console.WriteLine(highlightCount);
             if (highlightCount > 0)
                 e.Graphics.DrawImage(HoverImage, 0, 0, Width, Height);
 

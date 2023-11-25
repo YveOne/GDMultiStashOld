@@ -143,9 +143,9 @@ namespace GDMultiStash.GlobalHandlers
         }
 
 
-        
 
-            
+
+
 
 
         public void ShowChangelogWindow()

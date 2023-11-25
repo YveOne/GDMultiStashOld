@@ -74,12 +74,14 @@ namespace GDMultiStash.Forms
             pages[currentPageIndex].Button.BackColor = Constants.PageButtonBackColorActive;
             pages[currentPageIndex].Button.ForeColor = Constants.InteractiveForeColorHighlight;
             pages[currentPageIndex].Page.Visible = true;
+
+            pages[currentPageIndex].Page.Focus();
             //PageChanged?.Invoke(this, EventArgs.Empty);
         }
 
         #endregion
 
-        #region WndProc 
+        #region WndProc
 
         Rectangle BorderTop { get { return new Rectangle(0, 0, ClientSize.Width, Constants.WindowResizeBorderSize); } }
         Rectangle BorderLeft { get { return new Rectangle(0, 0, Constants.WindowResizeBorderSize, ClientSize.Height); } }
@@ -360,8 +362,6 @@ namespace GDMultiStash.Forms
                     break;
             }
         }
-
-
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {

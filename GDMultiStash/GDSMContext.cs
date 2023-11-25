@@ -98,7 +98,6 @@ namespace GDMultiStash
                 return;
             }
 
-            // directory gdx3 doesnt exist yet in 1.2
             if (File.Exists(Path.Combine(Global.Configuration.Settings.GamePath, "resources", "Text_DE.arc")))
             {
                 Global.Configuration.RestoreBackup();
@@ -136,6 +135,19 @@ namespace GDMultiStash
                     Console.Warning(Global.L.DisableCloudSyncMessage());
                 }
             }
+
+            Global.Localization.LoadGameLanguage("Text_DE", "German");
+            Global.Localization.LoadGameLanguage("Text_EN", "English");
+            Global.Localization.LoadGameLanguage("Text_ES", "Spanish");
+            Global.Localization.LoadGameLanguage("Text_FR", "French");
+            Global.Localization.LoadGameLanguage("Text_IT", "Italian");
+            Global.Localization.LoadGameLanguage("Text_CS", "Czech");
+            Global.Localization.LoadGameLanguage("Text_JA", "Japanese");
+            Global.Localization.LoadGameLanguage("Text_KO", "Korean");
+            Global.Localization.LoadGameLanguage("Text_PL", "Polish");
+            Global.Localization.LoadGameLanguage("Text_PT", "Portuguese");
+            Global.Localization.LoadGameLanguage("Text_VI", "Vietnamese");
+            Global.Localization.LoadGameLanguage("Text_ZH", "Chinese");
 
             Global.Database.LoadItemInfos(Properties.Resources.iteminfos);
             Global.Database.LoadItemAffixInfos(Properties.Resources.itemaffixes);
@@ -219,6 +231,7 @@ namespace GDMultiStash
             _gdGameHookService.StashStatusChanged += GDGameHook_StashStatusChanged;
             _gdGameHookService.ModeStatusChanged += GDGameHook_ModeStatusChanged;
             _gdGameHookService.ExpansionChanged += GDGameHook_ExpansionStatusChanged;
+            _gdGameHookService.ModNameChanged += GDGameHook_ModNameChanged;
             _gdGameHookService.TransferStashSaved += GDGameHook_TransferStashSaved;
             _gdGameHookService.Start();
 
@@ -356,6 +369,11 @@ namespace GDMultiStash
         private void GDGameHook_ExpansionStatusChanged(object sender, GDGameHookService.ExpansionChangedEventArgs e)
         {
             Global.Runtime.ActiveExpansion = (GrimDawnGameExpansion)e.ExpansionID;
+        }
+
+        private void GDGameHook_ModNameChanged(object sender, GDGameHookService.ModNameChangedEventArgs e)
+        {
+            Global.Runtime.ActiveModName = e.ModName;
         }
 
         private void GDGameHook_TransferStashSaved(object sender, EventArgs e)
