@@ -27,7 +27,7 @@ namespace GDMultiStash.GlobalHandlers
             public static Dictionary<string, string> ParseDictionary(string lines)
             {
                 Dictionary<string, string> dict = new Dictionary<string, string>();
-                foreach (var kvp in Utils.Funcs.ReadDictionaryFromText(lines))
+                foreach(var kvp in Utils.Funcs.ReadDictionaryFromText(lines))
                 {
                     if (kvp.Key.StartsWith("//")) continue;
                     dict[kvp.Key] = kvp.Value;
@@ -58,7 +58,7 @@ namespace GDMultiStash.GlobalHandlers
             var resourceText = Properties.Resources.ResourceManager.GetString(resourceName);
             if (resourceText == null)
             {
-                Console.Warning($"Failed reading resource {resourceName}");
+                Console.AlertError($"Failed reading resource {resourceName}");
                 return;
             }
             var resourceFile = resourceName.Replace("local_", "");

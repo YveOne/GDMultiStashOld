@@ -1,3 +1,9 @@
+v1.37.6.2
+- Fixed unknown affix record error when an item uses an other item as affix
+
+v1.37.6.1
+- Hotfix: removed debug message when stash is opened
+
 v1.37.6
 - Position of main window will now be saved and restored on startup
 - Added config option to set start position state to normal, minimized or tray

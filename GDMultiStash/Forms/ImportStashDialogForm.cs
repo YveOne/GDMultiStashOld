@@ -105,7 +105,7 @@ namespace GDMultiStash.Forms
             GrimDawnGameExpansion exp = Common.TransferFile.GetExpansionByFile(srcFile);
             if (exp == GrimDawnGameExpansion.Unknown)
             {
-                Console.Error(Global.L.InvalidTransferFileMessage());
+                Console.AlertError(Global.L.InvalidTransferFileMessage());
                 return DialogResult.None;
             }
 
@@ -153,7 +153,7 @@ namespace GDMultiStash.Forms
             {
                 foreach (string srcFile in files)
                     ShowDialog(owner, srcFile);
-                
+
                 importedStashes = _importedStashes.ToArray();
                 _importedStashes.Clear();
 
