@@ -62,7 +62,7 @@ namespace GDMultiStash.Forms.ContextMenues.SortStashes
                 }
                 else
                 {
-                    Console.AlertWarning("Unknown sort criteria '"+ kFound + "'");
+                    Console.AlertWarning("Unknown sort criteria '" + kFound + "'");
                     return;
                 }
             }
@@ -78,7 +78,7 @@ namespace GDMultiStash.Forms.ContextMenues.SortStashes
             else
                 sortStruct = new SizeSortingStructure();
 
-            var sortStringsToDisplayStrings = new Dictionary<string , string>();
+            var sortStringsToDisplayStrings = new Dictionary<string, string>();
 
             foreach (var stash in stashesIn)
             {
@@ -114,7 +114,7 @@ namespace GDMultiStash.Forms.ContextMenues.SortStashes
                         foundAnyItem = true;
                         removeTabItems.Add(item);
                     }
-                    foreach(var item in removeTabItems)
+                    foreach (var item in removeTabItems)
                         tab.Items.Remove(item);
                 }
             }
@@ -123,11 +123,11 @@ namespace GDMultiStash.Forms.ContextMenues.SortStashes
                 return;
 
             // loop sortStringsToDisplayStrings to get groups to create
-            //                                   sortStr, grpname
+            //                                   sortStr, grpname 
             var groupNames = new SortedDictionary<string, string>();
-            //                                             grpName,           dict<sortStr, stashname>
+            //                                             grpName,           dict<sortStr, stashname> 
             var groupsSortedStashes = new SortedDictionary<string, SortedDictionary<string, string>>();
-            foreach(var kvp in sortStringsToDisplayStrings)
+            foreach (var kvp in sortStringsToDisplayStrings)
             {
                 var sortString = kvp.Key;
                 var displayText = kvp.Value;
@@ -146,7 +146,7 @@ namespace GDMultiStash.Forms.ContextMenues.SortStashes
             var addedGroups = new List<StashGroupObject>();
             var addedStashes = new List<StashObject>();
 
-            foreach(var kvp1 in groupNames)
+            foreach (var kvp1 in groupNames)
             {
                 var groupSortedKey = kvp1.Key;
                 var groupName = kvp1.Value;
