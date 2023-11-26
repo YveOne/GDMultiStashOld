@@ -1,3 +1,6 @@
+v1.37.6.4
+- Fixed crash when creating backup of config.xml when config.xml.backup already exists
+
 v1.37.6.3
 - Fixed sorting stashes no more working
 
