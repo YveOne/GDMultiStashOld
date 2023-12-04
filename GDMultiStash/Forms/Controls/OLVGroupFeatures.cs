@@ -20,6 +20,7 @@ using BrightIdeasSoftware;
 
 namespace GDMultiStash.Forms.Controls
 {
+    [DesignerCategory("code")]
     internal class OLVGroupFeatures : OLVCatchScrolling
     {
         // https://stackoverflow.com/questions/32700669/c-sharp-change-color-of-groups-in-objectlistview

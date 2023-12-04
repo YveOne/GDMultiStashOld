@@ -6,10 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.ComponentModel;
 
 namespace GDMultiStash.Forms.Controls
 {
 
+    [DesignerCategory("code")]
     internal class TransparentPanel : Panel
     {
         protected override void WndProc(ref Message m)

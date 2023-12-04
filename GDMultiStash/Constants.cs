@@ -5,13 +5,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
+using System.IO;
 
 namespace GDMultiStash
 {
-    internal static class Constants
+    internal class C
     {
-        public static string AppName { get; } = "GDMultiStash";
-        public static int WM_SHOWME { get; } = Native.RegisterWindowMessage("GDMS_SHOW");
+        internal static string AppName { get; } = "GDMultiStash";
+        internal static int WM_SHOWME { get; } = Native.RegisterWindowMessage("GDMS_SHOW");
+
+        internal static string AppDataPath { get; } = Path.Combine(Application.StartupPath, "Data");
+        internal static string StashesPath { get; } = Path.Combine(AppDataPath, "Stashes");
+        internal static string LocalesPath { get; } = Path.Combine(AppDataPath, "Locales");
+        internal static string ConfigFile { get; } = Path.Combine(AppDataPath, "Config.xml");
+        internal static string ConfigFileBackup { get; } = $"{ConfigFile}.backup";
 
         internal static int WindowCaptionDragHeight { get; } = 60;
         internal static int WindowResizeBorderSize { get; } = 8;
@@ -54,18 +61,18 @@ namespace GDMultiStash
         internal static Color ListViewGroupHeaderCountForeColor { get; } = Color.FromArgb(180, 180, 180);
         internal static Color ListViewGroupHeaderForeColor { get; } = Color.FromArgb(245, 245, 245);
         internal static Color ListViewGroupHeaderForeColorEmpty { get; } = Color.FromArgb(150, 150, 150);
-
         internal static Color ListViewGroupHeaderSeparatorColor { get; } = Color.FromArgb(50, 50, 50);
 
         internal static Color ScrollBarColor { get; } = Color.FromArgb(100, 100, 100);
 
-
-
-
-
-
-
-
+        internal static Color ComboBoxBorderColor { get; } = FormBackColor;
+        internal static Color ComboBoxButtonColor { get; } = PassiveForeColor;
+        internal static Color ComboBoxButtonColorHighlight { get; } = InteractiveForeColor;
+        internal static Color ComboBoxBackColor { get; } = ListViewBackColor;
+        internal static Color ComboBoxForeColor { get; } = InteractiveForeColor;
+        internal static Color ComboBoxBackColorHighlight { get; } = ListViewGroupHeaderBackColor;
+        internal static Color ComboBoxForeColorHighlight { get; } = InteractiveForeColorHighlight;
+        internal static Color ComboBoxBorderListBorderColor { get; } = ListViewGroupHeaderBackColor;
 
 
 

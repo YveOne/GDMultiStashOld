@@ -1,3 +1,8 @@
+v1.37.7
+- Outsourced D3DHook.Overlay (my own module to draw responsive elements)
+- When GDMS crashes the exception will now be written to log.txt and displayed in console window
+- Fixed bug where game was starting inside x64 directory causing game to freeze/crash (wrong working directory)
+
 v1.37.6.4
 - Fixed crash when creating backup of config.xml when config.xml.backup already exists
 

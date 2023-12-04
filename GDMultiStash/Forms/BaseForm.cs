@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.ComponentModel;
 
 namespace GDMultiStash.Forms
 {
@@ -15,14 +14,17 @@ namespace GDMultiStash.Forms
         {
             Load += delegate {
                 Utils.Funcs.RunThread(1, () => {
-                    Utils.Funcs.Invoke(this, () => {
-                        Localize(Global.L);
-                    });
+                    Initialize();
+                    Localize();
                 });
             };
         }
 
-        protected virtual void Localize(GlobalHandlers.LocalizationHandler.StringsHolder L)
+        protected virtual void Initialize()
+        {
+        }
+
+        protected virtual void Localize(Global.LocalizationManager.StringsHolder L)
         {
         }
 
@@ -33,7 +35,7 @@ namespace GDMultiStash.Forms
                 Invoke(new Action(() => { Localize(); }));
                 return;
             }
-            Localize(Global.L);
+            Localize(G.L);
         }
 
     }

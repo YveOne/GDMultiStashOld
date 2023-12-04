@@ -413,6 +413,16 @@ namespace GDMultiStash.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap GDMSSplash {
+            get {
+                object obj = ResourceManager.GetObject("GDMSSplash", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap HomeButtonIcon {
             get {
                 object obj = ResourceManager.GetObject("HomeButtonIcon", resourceCulture);

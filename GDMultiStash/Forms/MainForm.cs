@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
-using BrightIdeasSoftware;
-
 using GDMultiStash.Common;
 using GDMultiStash.Common.Objects;
 
@@ -43,12 +41,12 @@ namespace GDMultiStash.Forms
         {
             button.FlatStyle = FlatStyle.Flat;
             button.FlatAppearance.BorderSize = 0;
-            button.FlatAppearance.MouseDownBackColor = Constants.PageButtonBackColorActive;
-            button.FlatAppearance.MouseOverBackColor = Constants.PageButtonBackColorActive;
-            button.BackColor = Constants.PageButtonBackColor;
-            button.ForeColor = Constants.InteractiveForeColor;
+            button.FlatAppearance.MouseDownBackColor = C.PageButtonBackColorActive;
+            button.FlatAppearance.MouseOverBackColor = C.PageButtonBackColorActive;
+            button.BackColor = C.PageButtonBackColor;
+            button.ForeColor = C.InteractiveForeColor;
 
-            page.BackColor = Constants.PageBackColor;
+            page.BackColor = C.PageBackColor;
             page.Dock = DockStyle.Fill;
             page.Visible = false;
 
@@ -56,8 +54,8 @@ namespace GDMultiStash.Forms
             pages.Add(new PageHolder(page, button));
             pagesPaddingPanel.Controls.Add(page);
 
-            button.MouseEnter += delegate { button.ForeColor = Constants.InteractiveForeColorHighlight; };
-            button.MouseLeave += delegate { if (pageIndex != currentPageIndex) button.ForeColor = Constants.InteractiveForeColor; };
+            button.MouseEnter += delegate { button.ForeColor = C.InteractiveForeColorHighlight; };
+            button.MouseLeave += delegate { if (pageIndex != currentPageIndex) button.ForeColor = C.InteractiveForeColor; };
             button.Click += delegate { ShowPage(pageIndex); };
             button.GotFocus += delegate { ClearFocus(); };
         }
@@ -66,13 +64,13 @@ namespace GDMultiStash.Forms
         {
             if (currentPageIndex != -1)
             {
-                pages[currentPageIndex].Button.BackColor = Constants.PageButtonBackColor;
-                pages[currentPageIndex].Button.ForeColor = Constants.InteractiveForeColor;
+                pages[currentPageIndex].Button.BackColor = C.PageButtonBackColor;
+                pages[currentPageIndex].Button.ForeColor = C.InteractiveForeColor;
                 pages[currentPageIndex].Page.Visible = false;
             }
             currentPageIndex = pageIndex;
-            pages[currentPageIndex].Button.BackColor = Constants.PageButtonBackColorActive;
-            pages[currentPageIndex].Button.ForeColor = Constants.InteractiveForeColorHighlight;
+            pages[currentPageIndex].Button.BackColor = C.PageButtonBackColorActive;
+            pages[currentPageIndex].Button.ForeColor = C.InteractiveForeColorHighlight;
             pages[currentPageIndex].Page.Visible = true;
 
             pages[currentPageIndex].Page.Focus();
@@ -83,10 +81,10 @@ namespace GDMultiStash.Forms
 
         #region WndProc
 
-        Rectangle BorderTop { get { return new Rectangle(0, 0, ClientSize.Width, Constants.WindowResizeBorderSize); } }
-        Rectangle BorderLeft { get { return new Rectangle(0, 0, Constants.WindowResizeBorderSize, ClientSize.Height); } }
-        Rectangle BorderBottom { get { return new Rectangle(0, ClientSize.Height - Constants.WindowResizeBorderSize, ClientSize.Width, Constants.WindowResizeBorderSize); } }
-        Rectangle BorderRight { get { return new Rectangle(ClientSize.Width - Constants.WindowResizeBorderSize, 0, Constants.WindowResizeBorderSize, ClientSize.Height); } }
+        Rectangle BorderTop { get { return new Rectangle(0, 0, ClientSize.Width, C.WindowResizeBorderSize); } }
+        Rectangle BorderLeft { get { return new Rectangle(0, 0, C.WindowResizeBorderSize, ClientSize.Height); } }
+        Rectangle BorderBottom { get { return new Rectangle(0, ClientSize.Height - C.WindowResizeBorderSize, ClientSize.Width, C.WindowResizeBorderSize); } }
+        Rectangle BorderRight { get { return new Rectangle(ClientSize.Width - C.WindowResizeBorderSize, 0, C.WindowResizeBorderSize, ClientSize.Height); } }
 
         protected override CreateParams CreateParams
         {
@@ -106,12 +104,12 @@ namespace GDMultiStash.Forms
         {
             if (m.Msg == Native.WM_NCLBUTTONDBLCLK) return; // disable doubleclick on titlebar
             base.WndProc(ref m);
-            if (m.Msg == Constants.WM_SHOWME)
+            if (m.Msg == C.WM_SHOWME)
             {
                 if (!Visible)
                     Show();
                 else
-                    MessageBox.Show(Global.L.AlreadyRunningMessage(), "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(G.L.AlreadyRunningMessage(), "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
             else if (m.Msg == 0x84)
@@ -130,7 +128,7 @@ namespace GDMultiStash.Forms
                 else if (rHit) m.Result = (IntPtr)Native.HT.RIGHT;
                 else if (lHit) m.Result = (IntPtr)Native.HT.LEFT;
                 else if (tHit) m.Result = (IntPtr)Native.HT.TOP;
-                else if (cursor.Y < Constants.WindowCaptionDragHeight)
+                else if (cursor.Y < C.WindowCaptionDragHeight)
                 {
                     m.Result = (IntPtr)Native.HT.CAPTION;
                     return;
@@ -142,29 +140,9 @@ namespace GDMultiStash.Forms
 
         #endregion
 
+        protected override bool ShowWithoutActivation => G.Configuration.Settings.AutoStartGame;
+
         #region buttons
-
-        public delegate Image ButtonImageGetter();
-
-        public void InitializeButton(Button button,
-            Color backColor, Color backColorHover, Color backColorPressed,
-            Color foreColor, Color foreColorHover,
-            ButtonImageGetter imageNormal,
-            ButtonImageGetter imageHover,
-            Action onClick)
-        {
-            button.FlatStyle = FlatStyle.Flat;
-            button.FlatAppearance.BorderSize = 0;
-            button.FlatAppearance.MouseOverBackColor = backColorHover;
-            button.FlatAppearance.MouseDownBackColor = backColorPressed;
-            button.BackColor = backColor;
-            button.ForeColor = foreColor;
-            button.Image = imageNormal();
-            button.MouseEnter += delegate { button.ForeColor = foreColorHover; button.Image = imageHover(); };
-            button.MouseLeave += delegate { button.ForeColor = foreColor; button.Image = imageNormal(); };
-            button.Click += delegate { onClick(); };
-            button.GotFocus += delegate { ClearFocus(); }; // unfocus, hide ugly border
-        }
 
         public void InitializeToolStripButton(ToolStripMenuItem item,
             Color backColor, Color backColorHover,
@@ -194,77 +172,62 @@ namespace GDMultiStash.Forms
             SetStyle(ControlStyles.ResizeRedraw, true);
             TopMost = false;
 
+
+
+
             #region Init Buttons
 
-            InitializeButton(captionGameButton,
-                Constants.CaptionButtonBackColor, Color.FromArgb(0, 102, 77), Color.FromArgb(0, 135, 102),
-                Constants.InteractiveForeColor, Constants.InteractiveForeColorHighlight,
-                delegate { return null; },
-                delegate { return null; },
-                delegate {
-                    switch (Global.Windows.StartGame())
-                    {
-                        case GlobalHandlers.WindowsHandler.GameStartResult.AlreadyRunning:
-                            Console.AlertWarning(Global.L.GameAlreadyRunningMessage());
-                            break;
-                        case GlobalHandlers.WindowsHandler.GameStartResult.Success:
-                            break;
-                    }
+            captionGameButton.Click += delegate {
+                switch (G.Windows.StartGame())
+                {
+                    case Global.WindowsManager.GameStartResult.AlreadyRunning:
+                        Console.AlertWarning(G.L.GameAlreadyRunningMessage());
+                        break;
+                    case Global.WindowsManager.GameStartResult.Success:
+                        break;
                 }
-                );
+            };
 
-            InitializeButton(captionTrayButton,
-                Constants.CaptionButtonBackColor, Constants.CaptionButtonBackColorHover, Constants.CaptionButtonBackColorPressed,
-                Constants.InteractiveForeColor, Constants.InteractiveForeColorHighlight,
-                delegate { return Properties.Resources.buttonTrayGray; },
-                delegate { return Properties.Resources.buttonTrayWhite; },
-                delegate { CloseToTray(); }
-                );
+            captionTrayButton.Click += delegate { CloseToTray(); };
+            captionMinimizeButton.Click += delegate { WindowState = FormWindowState.Minimized; };
+            captionCloseButton.Click += delegate { Close(); };
 
-            InitializeButton(captionMinimizeButton,
-                Constants.CaptionButtonBackColor, Constants.CaptionButtonBackColorHover, Constants.CaptionButtonBackColorPressed,
-                Constants.InteractiveForeColor, Constants.InteractiveForeColorHighlight,
-                delegate { return Properties.Resources.buttonMinimizeGray; },
-                delegate { return Properties.Resources.buttonMinimizeWhite; },
-                delegate { WindowState = FormWindowState.Minimized; }
-                );
 
-            InitializeButton(captionCloseButton,
-                Constants.CaptionButtonBackColor, Color.FromArgb(150, 32, 5), Color.FromArgb(207, 49, 12),
-                Constants.InteractiveForeColor, Constants.InteractiveForeColorHighlight,
-                delegate { return Properties.Resources.buttonCloseGray; },
-                delegate { return Properties.Resources.buttonCloseWhite; },
-                delegate { Close(); }
-                );
+
+
+
+
+
 
             InitializeToolStripButton(captionFileButton,
-                Constants.CaptionButtonBackColor, Constants.CaptionButtonBackColorHover,
-                Constants.InteractiveForeColor, Constants.InteractiveForeColorHighlight
+                C.CaptionButtonBackColor, C.CaptionButtonBackColorHover,
+                C.InteractiveForeColor, C.InteractiveForeColorHighlight
                 );
 
             InitializeToolStripButton(captionHelpButton,
-                Constants.CaptionButtonBackColor, Constants.CaptionButtonBackColorHover,
-                Constants.InteractiveForeColor, Constants.InteractiveForeColorHighlight
+                C.CaptionButtonBackColor, C.CaptionButtonBackColorHover,
+                C.InteractiveForeColor, C.InteractiveForeColorHighlight
                 );
 
             captionMenuStrip.Renderer = new Controls.FlatToolStripRenderer();
 
+
             #endregion
 
-            BackColor = Constants.FormBackColor;
-            formBackgroundPanel.BackColor = Constants.FormBackColor;
+            BackColor = C.FormBackColor;
+            formBackgroundPanel.BackColor = C.FormBackColor;
             BackgroundImage = Properties.Resources.border;
             BackgroundImageLayout = ImageLayout.Stretch;
             titlePanel.BackgroundImage = Properties.Resources.GDMSLogo;
             titlePanel.BackgroundImageLayout = ImageLayout.Zoom;
 
-            formPaddingPanel.BackColor = Constants.FormBackColor;
-            formPaddingPanel.Padding = Constants.FormPadding;
+            formPaddingPanel.BackColor = C.FormBackColor;
+            formPaddingPanel.Padding = C.FormPadding;
 
-            pagesPaddingPanel.BackColor = Constants.PageBackColor;
-            pagesPaddingPanel.Padding = Constants.PagesPadding;
+            pagesPaddingPanel.BackColor = C.PageBackColor;
+            pagesPaddingPanel.Padding = C.PagesPadding;
 
-            captionMenuStrip.BackColor = Constants.FormBackColor;
+            captionMenuStrip.BackColor = C.FormBackColor;
 
             AllowDrop = false; // used to drag transfer files into the window
 
@@ -283,11 +246,32 @@ namespace GDMultiStash.Forms
             ShowPage(0);
         }
 
-        protected override bool ShowWithoutActivation => Global.Configuration.Settings.AutoStartGame;
-
-        protected override void Localize(GlobalHandlers.LocalizationHandler.StringsHolder L)
+        protected override void Initialize()
         {
-            Text = Constants.AppName;
+            base.Initialize();
+
+            G.Windows.ExtendCaptionButton(captionGameButton, (Global.Windows.ExtendedButton exButton) => {
+                exButton.BackColorHover = Color.FromArgb(0, 102, 77); // TODO: put me inside constants.cs (?)
+                exButton.BackColorPressed = Color.FromArgb(0, 135, 102); // TODO: put me inside constants.cs (?)
+            });
+
+            G.Windows.ExtendCaptionButton(captionTrayButton, (Global.Windows.ExtendedButton exButton) => {
+                exButton.Image = Properties.Resources.buttonTrayGray;
+                exButton.ImageHover = Properties.Resources.buttonTrayWhite;
+            });
+
+            G.Windows.ExtendCaptionButton(captionMinimizeButton, (Global.Windows.ExtendedButton exButton) => {
+                exButton.Image = Properties.Resources.buttonMinimizeGray;
+                exButton.ImageHover = Properties.Resources.buttonMinimizeWhite;
+            });
+
+            G.Windows.ExtendCaptionCloseButton(captionCloseButton);
+
+        }
+
+        protected override void Localize(Global.LocalizationManager.StringsHolder L)
+        {
+            Text = C.AppName;
 
             // form
             captionGameButton.Text = L.StartGameButton();
@@ -332,18 +316,18 @@ namespace GDMultiStash.Forms
             // fix: objectlistview is causing huge lags when form is in background
             _plexiglass = new Plexiglass.DockingPlexiglass(formPaddingPanel)
             {
-                Color = Constants.FormBackColor,
+                Color = C.FormBackColor,
                 Opacity = 0.50,
                 Margin = new Padding(0, 0, 0, 0)
             };
             // only after cfg has been initialized!
-            Width = Global.Configuration.Settings.WindowWidth;
-            Height = Global.Configuration.Settings.WindowHeight;
+            Width = G.Configuration.Settings.WindowWidth;
+            Height = G.Configuration.Settings.WindowHeight;
             StartPosition = FormStartPosition.Manual;
-            Left = Global.Configuration.Settings.WindowX;
-            Top = Global.Configuration.Settings.WindowY;
+            Left = G.Configuration.Settings.WindowX;
+            Top = G.Configuration.Settings.WindowY;
 
-            switch (Global.Configuration.Settings.StartPositionType)
+            switch (G.Configuration.Settings.StartPositionType)
             {
                 case 0:
                     break;
@@ -371,9 +355,9 @@ namespace GDMultiStash.Forms
                 return;
             }
             bool gameOpened = Native.FindWindow("Grim Dawn", null) != IntPtr.Zero;
-            if (gameOpened && Global.Configuration.Settings.ConfirmClosing)
+            if (gameOpened && G.Configuration.Settings.ConfirmClosing)
             {
-                DialogResult result = MessageBox.Show(Global.L.ConfirmClosingMessage(), "", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                DialogResult result = MessageBox.Show(G.L.ConfirmClosingMessage(), "", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                 e.Cancel = (result == DialogResult.Cancel);
             }
         }
@@ -387,11 +371,11 @@ namespace GDMultiStash.Forms
         protected override void OnResizeEnd(EventArgs e)
         {
             base.OnResizeEnd(e);
-            Global.Configuration.Settings.WindowWidth = Width;
-            Global.Configuration.Settings.WindowHeight = Height;
-            Global.Configuration.Settings.WindowX = Left;
-            Global.Configuration.Settings.WindowY = Top;
-            Global.Configuration.Save();
+            G.Configuration.Settings.WindowWidth = Width;
+            G.Configuration.Settings.WindowHeight = Height;
+            G.Configuration.Settings.WindowX = Left;
+            G.Configuration.Settings.WindowY = Top;
+            G.Configuration.Save();
         }
 
         #endregion
@@ -400,22 +384,22 @@ namespace GDMultiStash.Forms
 
         private void SettingsButton_Click(object sender, EventArgs e)
         {
-            Global.Windows.ShowConfigurationWindow();
+            G.Windows.ShowConfigurationWindow();
         }
 
         private void AboutButton_Click(object sender, EventArgs e)
         {
-            Global.Windows.ShowAboutDialog();
+            G.Windows.ShowAboutDialog();
         }
 
         private void ChangelogButton_Click(object sender, EventArgs e)
         {
-            Global.Windows.ShowChangelogWindow();
+            G.Windows.ShowChangelogWindow();
         }
 
         private void ImportTransferFilesButton_Click(object sender, EventArgs e)
         {
-            Global.Windows.ShowImportDialog();
+            G.Windows.ShowImportDialog();
         }
 
         private void ImportGDSCButton_Click(object sender, EventArgs e)
@@ -456,7 +440,7 @@ namespace GDMultiStash.Forms
                     if (transferFile.TotalUsage == 0) continue; // no items inside
 
                     var stashName = System.Web.HttpUtility.HtmlDecode(mName.Groups[1].Value.Trim());
-                    StashObject stash = Global.Stashes.ImportCreateStash(stashFile, stashName, transferFile.Expansion, GrimDawnLib.GrimDawnGameMode.Both);
+                    StashObject stash = G.Stashes.CreateAndImportStash(stashFile, stashName, transferFile.Expansion, GrimDawnLib.GrimDawnGameMode.Both);
                     if (stash == null) continue;
                     importedStashes.Add(stash);
 
@@ -466,19 +450,19 @@ namespace GDMultiStash.Forms
 
                 if (importedStashes.Count != 0)
                 {
-                    var group = Global.Groups.CreateGroup("GDSC", true);
+                    var group = G.StashGroups.CreateGroup("GDSC", true);
                     foreach(var s in importedStashes)
                         s.GroupID = group.ID;
-                    Global.Configuration.Save();
-                    Global.Runtime.InvokeStashesAdded(importedStashes);
-                    Global.Runtime.InvokeStashGroupsAdded(group);
+                    G.Configuration.Save();
+                    G.Stashes.InvokeStashesAdded(importedStashes);
+                    G.StashGroups.InvokeStashGroupsAdded(group);
                 }
             }
         }
 
         private void CaptionImportCraftingModeButton_Click(object sender, EventArgs e)
         {
-            Global.Windows.ShowCraftingModeDialog();
+            G.Windows.ShowCraftingModeDialog();
         }
 
         private void TopMenuExportTransferFilesButton_Click(object sender, EventArgs e)
@@ -487,12 +471,12 @@ namespace GDMultiStash.Forms
             // TODO: redundant code in right click context -> export selected stashes
 
             StashesZipFile zipFile = new StashesZipFile();
-            foreach (StashObject selStash in Global.Stashes.GetAllStashes())
+            foreach (StashObject selStash in G.Stashes.GetAllStashes())
                 zipFile.AddStash(selStash);
 
             using (var dialog = new SaveFileDialog()
             {
-                Filter = $"{Global.L.ZipArchive()}|*.zip",
+                Filter = $"{G.L.ZipArchive()}|*.zip",
                 FileName = "TransferFiles.zip",
             })
             {

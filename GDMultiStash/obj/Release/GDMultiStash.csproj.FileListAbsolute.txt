@@ -64,14 +64,12 @@ C:\Users\Yvonne\Desktop\PROJECTS\GDMultiStashOld-master\_bin\Release\EasyHook64S
 C:\Users\Yvonne\Desktop\PROJECTS\GDMultiStashOld-master\_bin\Release\EasyLoad32.dll
 C:\Users\Yvonne\Desktop\PROJECTS\GDMultiStashOld-master\_bin\Release\EasyLoad64.dll
 C:\Users\Yvonne\Desktop\PROJECTS\GDMultiStashOld-master\_bin\Release\sharpdx_direct3d11_1_effects_x64.dll
-C:\Users\Yvonne\Desktop\PROJECTS\GDMultiStashOld-master\_bin\Release\sharpdx_direct3d11_1_effects_x86.dll
 C:\Users\Yvonne\Desktop\PROJECTS\GDMultiStashOld-master\_bin\Release\DllInjector64.exe
 C:\Users\Yvonne\Desktop\PROJECTS\GDMultiStashOld-master\_bin\Release\DllInjector.dll
 C:\Users\Yvonne\Desktop\PROJECTS\GDMultiStashOld-master\_bin\Release\Listdlls.exe
 C:\Users\Yvonne\Desktop\PROJECTS\GDMultiStashOld-master\_bin\Release\GDMultiStash.exe
 C:\Users\Yvonne\Desktop\PROJECTS\GDMultiStashOld-master\_bin\Release\GDMultiStash.pdb
 C:\Users\Yvonne\Desktop\PROJECTS\GDMultiStashOld-master\GDMultiStash\obj\Release\GDMultiStash.csproj.AssemblyReference.cache
-C:\Users\Yvonne\Desktop\PROJECTS\GDMultiStashOld-master\GDMultiStash\obj\Release\GDMultiStash.csproj.SuggestedBindingRedirects.cache
 C:\Users\Yvonne\Desktop\PROJECTS\GDMultiStashOld-master\GDMultiStash\obj\Release\GDMultiStash.g.resources
 C:\Users\Yvonne\Desktop\PROJECTS\GDMultiStashOld-master\GDMultiStash\obj\Release\GDMultiStash.Forms.AboutDialogForm.resources
 C:\Users\Yvonne\Desktop\PROJECTS\GDMultiStashOld-master\GDMultiStash\obj\Release\GDMultiStash.Forms.ChangelogDialogForm.resources
@@ -94,3 +92,4 @@ C:\Users\Yvonne\Desktop\PROJECTS\GDMultiStashOld-master\GDMultiStash\obj\Release
 C:\Users\Yvonne\Desktop\PROJECTS\GDMultiStashOld-master\GDMultiStash\obj\Release\GDMultiStash.exe
 C:\Users\Yvonne\Desktop\PROJECTS\GDMultiStashOld-master\GDMultiStash\obj\Release\GDMultiStash.pdb
 C:\Users\Yvonne\Desktop\PROJECTS\GDMultiStashOld-master\GDMultiStash\obj\Release\GDMultiStash.Forms.ColorsDialogForm.resources
+C:\Users\Yvonne\Desktop\PROJECTS\GDMultiStashOld-master\GDMultiStash\obj\Release\GDMultiStash.Forms.SplashForm.resources
